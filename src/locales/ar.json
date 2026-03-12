@@ -1,0 +1,352 @@
+{
+  "app": {
+    "name": "CoreHR",
+    "tagline": "نظام إدارة الموارد البشرية"
+  },
+  "nav": {
+    "dashboard": "لوحة التحكم",
+    "employees": "الموظفون",
+    "attendance": "الحضور والانصراف",
+    "leave": "إجازات",
+    "payroll": "الرواتب",
+    "recruitment": "التوظيف",
+    "orgchart": "الهيكل التنظيمي",
+    "settings": "الإعدادات"
+  },
+  "common": {
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "add": "إضافة",
+    "search": "بحث",
+    "filter": "تصفية",
+    "export": "تصدير",
+    "loading": "جاري التحميل...",
+    "noData": "لا توجد بيانات",
+    "confirm": "تأكيد",
+    "back": "رجوع",
+    "close": "إغلاق",
+    "actions": "إجراءات",
+    "status": "الحالة",
+    "date": "التاريخ",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "department": "القسم",
+    "position": "المنصب",
+    "comingSoon": "قريباً",
+    "comingSoonDesc": "هذا القسم قيد التطوير وسيكون متاحاً قريباً.",
+    "yes": "نعم",
+    "no": "لا",
+    "active": "نشط",
+    "inactive": "غير نشط",
+    "all": "الكل",
+    "from": "من",
+    "to": "إلى",
+    "total": "المجموع",
+    "submit": "إرسال",
+    "required": "هذا الحقل مطلوب",
+    "optional": "اختياري",
+    "view": "عرض",
+    "create": "إنشاء",
+    "update": "تحديث",
+    "reset": "إعادة تعيين"
+  },
+  "dashboard": {
+    "title": "لوحة التحكم",
+    "welcome": "مرحباً",
+    "totalEmployees": "إجمالي الموظفين",
+    "presentToday": "الحاضرون اليوم",
+    "onLeave": "في إجازة",
+    "openPositions": "الوظائف الشاغرة",
+    "recentActivity": "النشاط الأخير",
+    "headcountTrend": "تطور عدد الموظفين",
+    "departmentDistribution": "توزيع الأقسام",
+    "quickActions": "إجراءات سريعة",
+    "addEmployee": "إضافة موظف",
+    "viewAttendance": "عرض الحضور",
+    "newLeaveRequest": "طلب إجازة جديد",
+    "months": {
+      "jan": "يناير",
+      "feb": "فبراير",
+      "mar": "مارس",
+      "apr": "أبريل",
+      "may": "مايو",
+      "jun": "يونيو",
+      "jul": "يوليو",
+      "aug": "أغسطس",
+      "sep": "سبتمبر",
+      "oct": "أكتوبر",
+      "nov": "نوفمبر",
+      "dec": "ديسمبر"
+    }
+  },
+  "employees": {
+    "title": "الموظفون",
+    "addEmployee": "إضافة موظف",
+    "editEmployee": "تعديل موظف",
+    "deleteEmployee": "حذف موظف",
+    "deleteConfirm": "هل أنت متأكد من حذف هذا الموظف؟ لا يمكن التراجع عن هذا الإجراء.",
+    "employeeId": "رقم الموظف",
+    "nameAr": "الاسم بالعربية",
+    "nameEn": "الاسم بالإنجليزية",
+    "hireDate": "تاريخ التعيين",
+    "salary": "الراتب",
+    "table": {
+      "noResults": "لا يوجد موظفون",
+      "showing": "عرض {{count}} موظف"
+    },
+    "profile": {
+      "title": "ملف الموظف",
+      "personalInfo": "المعلومات الشخصية",
+      "employmentInfo": "معلومات التوظيف",
+      "attendance": "سجل الحضور",
+      "leaves": "الإجازات"
+    },
+    "form": {
+      "addTitle": "إضافة موظف جديد",
+      "editTitle": "تعديل بيانات الموظف",
+      "photo": "الصورة الشخصية",
+      "uploadPhoto": "رفع صورة",
+      "departments": {
+        "engineering": "الهندسة",
+        "hr": "الموارد البشرية",
+        "finance": "المالية",
+        "marketing": "التسويق",
+        "operations": "العمليات",
+        "sales": "المبيعات",
+        "it": "تقنية المعلومات",
+        "legal": "الشؤون القانونية"
+      },
+      "status": {
+        "active": "نشط",
+        "inactive": "غير نشط",
+        "onleave": "في إجازة"
+      }
+    },
+    "success": {
+      "created": "تم إضافة الموظف بنجاح",
+      "updated": "تم تحديث بيانات الموظف بنجاح",
+      "deleted": "تم حذف الموظف بنجاح"
+    }
+  },
+  "attendance": {
+    "title": "الحضور والانصراف",
+    "clockIn": "تسجيل الحضور",
+    "clockOut": "تسجيل الانصراف",
+    "faceRecognition": "التعرف على الوجه",
+    "scanFace": "مسح الوجه",
+    "scanning": "جاري المسح...",
+    "scanSuccess": "تم التعرف على الهوية بنجاح",
+    "scanFailed": "فشل التعرف على الهوية",
+    "cameraUnavailable": "الكاميرا غير متاحة",
+    "cameraPermission": "يرجى السماح بالوصول إلى الكاميرا",
+    "monthlyGrid": "سجل الحضور الشهري",
+    "present": "حاضر",
+    "absent": "غائب",
+    "late": "متأخر",
+    "holiday": "عطلة",
+    "weekend": "إجازة أسبوعية",
+    "workHours": "ساعات العمل",
+    "checkIn": "وقت الحضور",
+    "checkOut": "وقت الانصراف",
+    "totalHours": "إجمالي الساعات",
+    "attendanceRate": "نسبة الحضور",
+    "success": {
+      "clockedIn": "تم تسجيل حضورك بنجاح",
+      "clockedOut": "تم تسجيل انصرافك بنجاح"
+    },
+    "alreadyClockedIn": "لقد قمت بتسجيل الحضور مسبقاً",
+    "notClockedIn": "لم تقم بتسجيل الحضور بعد"
+  },
+  "leave": {
+    "title": "إدارة الإجازات",
+    "requestLeave": "طلب إجازة",
+    "myLeaves": "إجازاتي",
+    "pendingApprovals": "طلبات الاعتماد",
+    "leaveBalance": "رصيد الإجازات",
+    "leaveType": "نوع الإجازة",
+    "startDate": "تاريخ البدء",
+    "endDate": "تاريخ الانتهاء",
+    "duration": "المدة",
+    "days": "أيام",
+    "reason": "السبب",
+    "status": {
+      "pending": "قيد الانتظار",
+      "approved": "معتمد",
+      "rejected": "مرفوض"
+    },
+    "types": {
+      "annual": "إجازة سنوية",
+      "sick": "إجازة مرضية",
+      "emergency": "إجازة طارئة",
+      "unpaid": "إجازة بدون راتب",
+      "maternity": "إجازة أمومة",
+      "paternity": "إجازة أبوة"
+    },
+    "balance": {
+      "annual": "الإجازة السنوية",
+      "sick": "الإجازة المرضية",
+      "used": "المستخدم",
+      "remaining": "المتبقي",
+      "total": "الإجمالي"
+    },
+    "form": {
+      "title": "طلب إجازة جديد",
+      "selectType": "اختر نوع الإجازة",
+      "selectEmployee": "اختر الموظف",
+      "reasonPlaceholder": "اذكر سبب الإجازة..."
+    },
+    "approve": "اعتماد",
+    "reject": "رفض",
+    "approveConfirm": "هل تريد اعتماد هذا الطلب؟",
+    "rejectConfirm": "هل تريد رفض هذا الطلب؟",
+    "success": {
+      "requested": "تم تقديم طلب الإجازة بنجاح",
+      "approved": "تم اعتماد الطلب",
+      "rejected": "تم رفض الطلب"
+    },
+    "table": {
+      "noResults": "لا توجد طلبات إجازة"
+    }
+  },
+  "payroll": {
+    "title": "الرواتب",
+    "subtitle": "إدارة الرواتب والمستحقات",
+    "runPayroll": "تشغيل مسير الرواتب",
+    "runPayrollTitle": "تشغيل مسير الرواتب",
+    "runPayrollDesc": "سيتم إنشاء كشف راتب لكل موظف نشط للشهر المحدد.",
+    "runConfirm": "تأكيد التشغيل",
+    "selectMonth": "اختر الشهر",
+    "selectYear": "اختر السنة",
+    "viewSlip": "عرض المسير",
+    "printSlip": "طباعة",
+    "payslipTitle": "مسير الرواتب",
+    "companyName": "شركة كور اتش آر",
+    "earnings": "المستحقات",
+    "deductions": "الاستقطاعات",
+    "basicSalary": "الراتب الأساسي",
+    "housing": "بدل السكن (25%)",
+    "transport": "بدل النقل",
+    "grossPay": "إجمالي المستحقات",
+    "gosiDeduction": "التأمينات الاجتماعية (10%)",
+    "totalDeductions": "إجمالي الاستقطاعات",
+    "netPay": "صافي الراتب",
+    "payPeriod": "الفترة",
+    "payDate": "تاريخ الصرف",
+    "status": {
+      "pending": "قيد الانتظار",
+      "processed": "تم الصرف"
+    },
+    "summary": {
+      "totalCost": "إجمالي تكلفة الرواتب",
+      "employeesPaid": "الموظفون المصروف لهم",
+      "averageSalary": "متوسط صافي الراتب",
+      "pending": "سجلات معلقة",
+      "deptBreakdown": "التوزيع حسب القسم"
+    },
+    "table": {
+      "noResults": "لا توجد سجلات رواتب لهذا الشهر",
+      "noResultsHint": "استخدم زر «تشغيل مسير الرواتب» لإنشاء سجلات هذا الشهر"
+    },
+    "success": {
+      "ran": "تم تشغيل مسير الرواتب بنجاح"
+    },
+    "alreadyRan": "تم تشغيل مسير الرواتب لهذا الشهر مسبقاً",
+    "months": {
+      "1": "يناير", "2": "فبراير", "3": "مارس", "4": "أبريل",
+      "5": "مايو", "6": "يونيو", "7": "يوليو", "8": "أغسطس",
+      "9": "سبتمبر", "10": "أكتوبر", "11": "نوفمبر", "12": "ديسمبر"
+    }
+  },
+  "recruitment": {
+    "title": "التوظيف",
+    "subtitle": "إدارة الوظائف والمتقدمين",
+    "newJob": "وظيفة جديدة",
+    "allJobs": "جميع الوظائف",
+    "openJobs": "وظائف شاغرة",
+    "closedJobs": "وظائف مغلقة",
+    "totalApplicants": "إجمالي المتقدمين",
+    "hiredThisMonth": "تم التوظيف هذا الشهر",
+    "jobDetails": "تفاصيل الوظيفة",
+    "applicants": "المتقدمون",
+    "applicant": "متقدم",
+    "pipeline": "مسار التوظيف",
+    "backToJobs": "العودة للوظائف",
+    "deadline": "آخر موعد",
+    "postedAt": "تاريخ النشر",
+    "requirements": "المتطلبات",
+    "description": "الوصف الوظيفي",
+    "viewPipeline": "عرض المسار",
+    "resumeLink": "السيرة الذاتية",
+    "appliedOn": "تاريخ التقديم",
+    "stageHistory": "تاريخ المراحل",
+    "noApplicants": "لا يوجد متقدمون لهذه الوظيفة",
+    "noJobs": "لا توجد وظائف",
+    "jobStatus": {
+      "open": "مفتوحة",
+      "closed": "مغلقة",
+      "draft": "مسودة"
+    },
+    "stages": {
+      "applied":   "تقدّم",
+      "screening": "مراجعة",
+      "interview": "مقابلة",
+      "offer":     "عرض",
+      "hired":     "تم التوظيف",
+      "rejected":  "مرفوض"
+    },
+    "form": {
+      "addTitle": "إضافة وظيفة جديدة",
+      "editTitle": "تعديل الوظيفة",
+      "titleEn": "المسمى الوظيفي (إنجليزي)",
+      "titleAr": "المسمى الوظيفي (عربي)",
+      "descEn": "الوصف (إنجليزي)",
+      "descAr": "الوصف (عربي)",
+      "reqEn": "المتطلبات (إنجليزية، سطر لكل متطلب)",
+      "reqAr": "المتطلبات (عربية، سطر لكل متطلب)",
+      "deadlinePlaceholder": "آخر موعد للتقديم"
+    },
+    "success": {
+      "created": "تم إضافة الوظيفة بنجاح",
+      "updated": "تم تحديث الوظيفة بنجاح",
+      "moved": "تم نقل المتقدم بنجاح"
+    }
+  },
+  "orgchart": {
+    "title": "الهيكل التنظيمي",
+    "subtitle": "التسلسل الوظيفي للمنظمة",
+    "comingSoon": "قريباً — وحدة الهيكل التنظيمي",
+    "noEmployees": "لا يوجد موظفون لعرضهم",
+    "activeEmployees": "موظف نشط",
+    "zoomIn": "تكبير",
+    "zoomOut": "تصغير",
+    "zoomReset": "إعادة ضبط التكبير",
+    "zoomHint": "Ctrl + عجلة الماوس للتكبير",
+    "collapse": "طي",
+    "expand": "توسيع",
+    "reportsTo": "يرفع تقاريره إلى"
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "comingSoon": "قريباً — وحدة الإعدادات",
+    "language": "اللغة",
+    "arabic": "العربية",
+    "english": "الإنجليزية"
+  },
+  "validation": {
+    "required": "هذا الحقل مطلوب",
+    "invalidEmail": "البريد الإلكتروني غير صالح",
+    "minLength": "يجب أن يكون على الأقل {{min}} أحرف",
+    "maxLength": "يجب ألا يتجاوز {{max}} حرف",
+    "invalidPhone": "رقم الهاتف غير صالح",
+    "endDateAfterStart": "تاريخ الانتهاء يجب أن يكون بعد تاريخ البدء",
+    "positiveSalary": "يجب أن يكون الراتب رقماً موجباً"
+  },
+  "errors": {
+    "generic": "حدث خطأ، يرجى المحاولة مرة أخرى",
+    "notFound": "الصفحة غير موجودة",
+    "loadFailed": "فشل تحميل البيانات"
+  }
+}

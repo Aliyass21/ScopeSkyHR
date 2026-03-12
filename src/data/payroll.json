@@ -1,0 +1,86 @@
+[
+  {
+    "id": "PAY-0001", "employeeId": "EMP-0001",
+    "month": 2, "year": 2026,
+    "basicSalary": 25000, "housing": 6250, "transport": 1500, "deductions": 2500,
+    "grossPay": 32750, "netPay": 30250,
+    "status": "processed", "processedAt": "2026-02-28T10:00:00Z"
+  },
+  {
+    "id": "PAY-0002", "employeeId": "EMP-0002",
+    "month": 2, "year": 2026,
+    "basicSalary": 20000, "housing": 5000, "transport": 1500, "deductions": 2000,
+    "grossPay": 26500, "netPay": 24500,
+    "status": "processed", "processedAt": "2026-02-28T10:00:00Z"
+  },
+  {
+    "id": "PAY-0003", "employeeId": "EMP-0003",
+    "month": 2, "year": 2026,
+    "basicSalary": 32000, "housing": 8000, "transport": 1500, "deductions": 3200,
+    "grossPay": 41500, "netPay": 38300,
+    "status": "processed", "processedAt": "2026-02-28T10:00:00Z"
+  },
+  {
+    "id": "PAY-0004", "employeeId": "EMP-0004",
+    "month": 2, "year": 2026,
+    "basicSalary": 15000, "housing": 3750, "transport": 1500, "deductions": 1500,
+    "grossPay": 20250, "netPay": 18750,
+    "status": "processed", "processedAt": "2026-02-28T10:00:00Z"
+  },
+  {
+    "id": "PAY-0005", "employeeId": "EMP-0005",
+    "month": 2, "year": 2026,
+    "basicSalary": 28000, "housing": 7000, "transport": 1500, "deductions": 2800,
+    "grossPay": 36500, "netPay": 33700,
+    "status": "processed", "processedAt": "2026-02-28T10:00:00Z"
+  },
+  {
+    "id": "PAY-0006", "employeeId": "EMP-0006",
+    "month": 2, "year": 2026,
+    "basicSalary": 18000, "housing": 4500, "transport": 1500, "deductions": 1800,
+    "grossPay": 24000, "netPay": 22200,
+    "status": "processed", "processedAt": "2026-02-28T10:00:00Z"
+  },
+  {
+    "id": "PAY-0007", "employeeId": "EMP-0007",
+    "month": 2, "year": 2026,
+    "basicSalary": 14000, "housing": 3500, "transport": 1500, "deductions": 1400,
+    "grossPay": 19000, "netPay": 17600,
+    "status": "processed", "processedAt": "2026-02-28T10:00:00Z"
+  },
+  {
+    "id": "PAY-0008", "employeeId": "EMP-0008",
+    "month": 2, "year": 2026,
+    "basicSalary": 13000, "housing": 3250, "transport": 1500, "deductions": 1300,
+    "grossPay": 17750, "netPay": 16450,
+    "status": "processed", "processedAt": "2026-02-28T10:00:00Z"
+  },
+  {
+    "id": "PAY-0009", "employeeId": "EMP-0009",
+    "month": 2, "year": 2026,
+    "basicSalary": 30000, "housing": 7500, "transport": 1500, "deductions": 3000,
+    "grossPay": 39000, "netPay": 36000,
+    "status": "processed", "processedAt": "2026-02-28T10:00:00Z"
+  },
+  {
+    "id": "PAY-0010", "employeeId": "EMP-0010",
+    "month": 2, "year": 2026,
+    "basicSalary": 22000, "housing": 5500, "transport": 1500, "deductions": 2200,
+    "grossPay": 29000, "netPay": 26800,
+    "status": "processed", "processedAt": "2026-02-28T10:00:00Z"
+  },
+  {
+    "id": "PAY-0011", "employeeId": "EMP-0011",
+    "month": 2, "year": 2026,
+    "basicSalary": 20000, "housing": 5000, "transport": 1500, "deductions": 2000,
+    "grossPay": 26500, "netPay": 24500,
+    "status": "processed", "processedAt": "2026-02-28T10:00:00Z"
+  },
+  {
+    "id": "PAY-0012", "employeeId": "EMP-0012",
+    "month": 2, "year": 2026,
+    "basicSalary": 10000, "housing": 2500, "transport": 1500, "deductions": 1000,
+    "grossPay": 14000, "netPay": 13000,
+    "status": "processed", "processedAt": "2026-02-28T10:00:00Z"
+  }
+]

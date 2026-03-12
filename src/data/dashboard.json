@@ -1,0 +1,66 @@
+{
+  "stats": {
+    "totalEmployees": 12,
+    "presentToday": 9,
+    "onLeave": 1,
+    "openPositions": 3
+  },
+  "headcountTrend": [
+    { "month": "jul", "count": 7 },
+    { "month": "aug", "count": 8 },
+    { "month": "sep", "count": 8 },
+    { "month": "oct", "count": 9 },
+    { "month": "nov", "count": 10 },
+    { "month": "dec", "count": 10 },
+    { "month": "jan", "count": 11 },
+    { "month": "feb", "count": 11 },
+    { "month": "mar", "count": 12 }
+  ],
+  "recentActivity": [
+    {
+      "id": "ACT-001",
+      "type": "hire",
+      "employeeId": "EMP-0012",
+      "employeeName": "Lama Al-Najdi",
+      "descriptionAr": "تم تعيين لمى النجدي في قسم التسويق",
+      "descriptionEn": "Lama Al-Najdi hired in Marketing department",
+      "timestamp": "2023-05-10T09:00:00Z"
+    },
+    {
+      "id": "ACT-002",
+      "type": "leave",
+      "employeeId": "EMP-0007",
+      "employeeName": "Tariq Al-Asiri",
+      "descriptionAr": "طارق العسيري في إجازة سنوية",
+      "descriptionEn": "Tariq Al-Asiri on annual leave",
+      "timestamp": "2026-03-01T08:00:00Z"
+    },
+    {
+      "id": "ACT-003",
+      "type": "attendance",
+      "employeeId": "EMP-0001",
+      "employeeName": "Mohammed Al-Ghamdi",
+      "descriptionAr": "محمد الغامدي سجّل حضوره",
+      "descriptionEn": "Mohammed Al-Ghamdi clocked in",
+      "timestamp": "2026-03-12T08:03:00Z"
+    },
+    {
+      "id": "ACT-004",
+      "type": "promotion",
+      "employeeId": "EMP-0006",
+      "employeeName": "Reem Al-Zahrani",
+      "descriptionAr": "ريم الزهراني ترقّت إلى مطورة أولى",
+      "descriptionEn": "Reem Al-Zahrani promoted to Senior Developer",
+      "timestamp": "2026-02-15T10:00:00Z"
+    },
+    {
+      "id": "ACT-005",
+      "type": "hire",
+      "employeeId": "EMP-0011",
+      "employeeName": "Badr Al-Harbi",
+      "descriptionAr": "تم تعيين بدر الحربي في قسم الهندسة",
+      "descriptionEn": "Badr Al-Harbi hired in Engineering department",
+      "timestamp": "2022-09-05T09:00:00Z"
+    }
+  ]
+}

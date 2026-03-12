@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 243 75% 59%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 199 89% 48%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 243 75% 59%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 8% 7%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 8% 7%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 243 75% 59%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 199 89% 48%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 243 75% 59%;
+  }
+
+  /* ── Light Green theme ── */
+  html[data-theme="light-green"] {
+    --background: 138 40% 97%;
+    --foreground: 140 20% 8%;
+    --card: 0 0% 100%;
+    --card-foreground: 140 20% 8%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 140 20% 8%;
+    --primary: 142 71% 35%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 138 25% 91%;
+    --secondary-foreground: 140 20% 8%;
+    --muted: 138 20% 93%;
+    --muted-foreground: 140 12% 42%;
+    --accent: 152 60% 38%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 138 18% 87%;
+    --input: 138 18% 87%;
+    --ring: 142 71% 35%;
+  }
+
+  /* ── Dark Green theme ── */
+  html[data-theme="dark-green"] {
+    --background: 150 20% 5%;
+    --foreground: 0 0% 97%;
+    --card: 150 15% 9%;
+    --card-foreground: 0 0% 97%;
+    --popover: 150 15% 9%;
+    --popover-foreground: 0 0% 97%;
+    --primary: 142 65% 52%;
+    --primary-foreground: 140 20% 6%;
+    --secondary: 150 12% 15%;
+    --secondary-foreground: 0 0% 97%;
+    --muted: 150 12% 15%;
+    --muted-foreground: 150 8% 62%;
+    --accent: 160 55% 44%;
+    --accent-foreground: 0 0% 97%;
+    --destructive: 0 62.8% 40%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 150 12% 16%;
+    --input: 150 12% 16%;
+    --ring: 142 65% 52%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+html[dir='rtl'] body {
+  font-family: 'Cairo', sans-serif;
+}
+
+html[dir='ltr'] body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* ─── Org Chart Connectors ─── */
+.org-children {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.org-branch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 0.75rem;
+  position: relative;
+}
+
+/* Vertical line from horizontal bar down to the child */
+.org-branch::before {
+  content: '';
+  height: 1.5rem;
+  width: 1px;
+  background: hsl(var(--border));
+}
+
+/* Horizontal line segment for each branch */
+.org-branch::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: hsl(var(--border));
+}
+
+/* First child: horizontal line starts at its center, extends right */
+.org-branch:first-child::after {
+  left: 50%;
+}
+
+/* Last child: horizontal line starts at left, ends at its center */
+.org-branch:last-child::after {
+  right: 50%;
+}
+
+/* Single child: no horizontal line needed */
+.org-branch:only-child::after {
+  display: none;
+}

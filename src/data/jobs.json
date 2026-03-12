@@ -1,0 +1,102 @@
+[
+  {
+    "id": "JOB-001",
+    "title": "Senior Frontend Developer",
+    "titleAr": "مطور واجهات أمامية أول",
+    "department": "engineering",
+    "descriptionEn": "We are looking for an experienced Senior Frontend Developer to join our engineering team. You will be responsible for building and maintaining high-quality web applications using React and TypeScript.",
+    "descriptionAr": "نبحث عن مطور واجهات أمامية أول ذو خبرة للانضمام إلى فريق الهندسة لدينا. ستكون مسؤولاً عن بناء وصيانة تطبيقات الويب عالية الجودة باستخدام React وTypeScript.",
+    "requirementsEn": [
+      "5+ years of experience with React and TypeScript",
+      "Strong knowledge of HTML5, CSS3, and responsive design",
+      "Experience with state management (Redux / Zustand)",
+      "Familiarity with REST APIs and GraphQL",
+      "Good communication skills in Arabic and English"
+    ],
+    "requirementsAr": [
+      "خبرة 5 سنوات أو أكثر مع React وTypeScript",
+      "معرفة قوية بـ HTML5 وCSS3 والتصميم المتجاوب",
+      "خبرة في إدارة الحالة (Redux / Zustand)",
+      "إلمام بـ REST APIs وGraphQL",
+      "مهارات تواصل جيدة بالعربية والإنجليزية"
+    ],
+    "status": "open",
+    "deadline": "2026-04-15",
+    "postedAt": "2026-02-10T09:00:00Z"
+  },
+  {
+    "id": "JOB-002",
+    "title": "HR Business Partner",
+    "titleAr": "شريك أعمال للموارد البشرية",
+    "department": "hr",
+    "descriptionEn": "We are seeking an experienced HR Business Partner to support our growing team. You will collaborate with department leaders to drive HR strategies aligned with business goals.",
+    "descriptionAr": "نسعى إلى توظيف شريك أعمال للموارد البشرية لدعم فريقنا المتنامي. ستتعاون مع قادة الأقسام لتطوير استراتيجيات الموارد البشرية المتوافقة مع أهداف العمل.",
+    "requirementsEn": [
+      "Bachelor's degree in Human Resources or related field",
+      "3+ years of HR generalist experience",
+      "Strong knowledge of Saudi labor law",
+      "Experience with HRIS systems",
+      "Excellent interpersonal and negotiation skills"
+    ],
+    "requirementsAr": [
+      "درجة البكالوريوس في الموارد البشرية أو مجال ذي صلة",
+      "خبرة 3 سنوات أو أكثر في الموارد البشرية العامة",
+      "معرفة قوية بنظام العمل السعودي",
+      "خبرة مع أنظمة HRIS",
+      "مهارات تواصل وتفاوض ممتازة"
+    ],
+    "status": "open",
+    "deadline": "2026-03-30",
+    "postedAt": "2026-02-15T09:00:00Z"
+  },
+  {
+    "id": "JOB-003",
+    "title": "Financial Analyst",
+    "titleAr": "محلل مالي",
+    "department": "finance",
+    "descriptionEn": "Join our finance team as a Financial Analyst to support budgeting, forecasting, and financial reporting. You will work closely with the Finance Director to deliver accurate financial insights.",
+    "descriptionAr": "انضم إلى فريق المالية كمحلل مالي لدعم عمليات الميزانية والتوقعات والتقارير المالية. ستعمل عن كثب مع مدير المالية لتقديم رؤى مالية دقيقة.",
+    "requirementsEn": [
+      "Bachelor's degree in Finance, Accounting, or Economics",
+      "2+ years of financial analysis experience",
+      "Proficiency in Excel and financial modeling",
+      "CFA or CPA certification is a plus",
+      "Experience with ERP systems"
+    ],
+    "requirementsAr": [
+      "درجة البكالوريوس في المالية أو المحاسبة أو الاقتصاد",
+      "خبرة سنتان أو أكثر في التحليل المالي",
+      "إتقان Excel والنمذجة المالية",
+      "شهادة CFA أو CPA ميزة إضافية",
+      "خبرة مع أنظمة ERP"
+    ],
+    "status": "open",
+    "deadline": "2026-04-01",
+    "postedAt": "2026-02-20T09:00:00Z"
+  },
+  {
+    "id": "JOB-004",
+    "title": "Regional Sales Manager",
+    "titleAr": "مدير مبيعات إقليمي",
+    "department": "sales",
+    "descriptionEn": "We are looking for a dynamic Regional Sales Manager to lead our sales team in the Western region. This role requires a strong sales background and leadership experience.",
+    "descriptionAr": "نبحث عن مدير مبيعات إقليمي ديناميكي لقيادة فريق المبيعات في المنطقة الغربية. يتطلب هذا الدور خلفية مبيعات قوية وخبرة قيادية.",
+    "requirementsEn": [
+      "7+ years of sales experience with 3+ in management",
+      "Proven track record of meeting sales targets",
+      "Strong leadership and team building skills",
+      "Experience in B2B sales environment",
+      "Valid driver's license and willingness to travel"
+    ],
+    "requirementsAr": [
+      "خبرة 7 سنوات أو أكثر في المبيعات مع 3 في الإدارة",
+      "سجل حافل في تحقيق أهداف المبيعات",
+      "مهارات قيادية قوية وبناء الفريق",
+      "خبرة في بيئة مبيعات B2B",
+      "رخصة قيادة سارية واستعداد للسفر"
+    ],
+    "status": "closed",
+    "deadline": "2026-01-31",
+    "postedAt": "2026-01-05T09:00:00Z"
+  }
+]

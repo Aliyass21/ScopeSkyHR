@@ -1,0 +1,201 @@
+[
+  {
+    "id": "ATT-0001",
+    "employeeId": "EMP-0001",
+    "date": "2026-03-01",
+    "status": "present",
+    "checkIn": "08:05",
+    "checkOut": "17:10",
+    "workHours": 9.08
+  },
+  {
+    "id": "ATT-0002",
+    "employeeId": "EMP-0001",
+    "date": "2026-03-02",
+    "status": "present",
+    "checkIn": "07:58",
+    "checkOut": "17:02",
+    "workHours": 9.07
+  },
+  {
+    "id": "ATT-0003",
+    "employeeId": "EMP-0001",
+    "date": "2026-03-03",
+    "status": "late",
+    "checkIn": "09:30",
+    "checkOut": "17:30",
+    "workHours": 8.0
+  },
+  {
+    "id": "ATT-0004",
+    "employeeId": "EMP-0001",
+    "date": "2026-03-04",
+    "status": "absent"
+  },
+  {
+    "id": "ATT-0005",
+    "employeeId": "EMP-0001",
+    "date": "2026-03-05",
+    "status": "present",
+    "checkIn": "08:00",
+    "checkOut": "17:00",
+    "workHours": 9.0
+  },
+  {
+    "id": "ATT-0006",
+    "employeeId": "EMP-0001",
+    "date": "2026-03-06",
+    "status": "weekend"
+  },
+  {
+    "id": "ATT-0007",
+    "employeeId": "EMP-0001",
+    "date": "2026-03-07",
+    "status": "weekend"
+  },
+  {
+    "id": "ATT-0008",
+    "employeeId": "EMP-0001",
+    "date": "2026-03-08",
+    "status": "present",
+    "checkIn": "08:02",
+    "checkOut": "17:05",
+    "workHours": 9.05
+  },
+  {
+    "id": "ATT-0009",
+    "employeeId": "EMP-0001",
+    "date": "2026-03-09",
+    "status": "present",
+    "checkIn": "07:55",
+    "checkOut": "17:00",
+    "workHours": 9.08
+  },
+  {
+    "id": "ATT-0010",
+    "employeeId": "EMP-0001",
+    "date": "2026-03-10",
+    "status": "present",
+    "checkIn": "08:10",
+    "checkOut": "17:00",
+    "workHours": 8.83
+  },
+  {
+    "id": "ATT-0011",
+    "employeeId": "EMP-0001",
+    "date": "2026-03-11",
+    "status": "present",
+    "checkIn": "08:00",
+    "checkOut": "17:00",
+    "workHours": 9.0
+  },
+  {
+    "id": "ATT-0012",
+    "employeeId": "EMP-0001",
+    "date": "2026-03-12",
+    "status": "present",
+    "checkIn": "08:03",
+    "workHours": null
+  },
+  {
+    "id": "ATT-0013",
+    "employeeId": "EMP-0002",
+    "date": "2026-03-01",
+    "status": "present",
+    "checkIn": "08:30",
+    "checkOut": "17:30",
+    "workHours": 9.0
+  },
+  {
+    "id": "ATT-0014",
+    "employeeId": "EMP-0002",
+    "date": "2026-03-02",
+    "status": "present",
+    "checkIn": "08:25",
+    "checkOut": "17:00",
+    "workHours": 8.58
+  },
+  {
+    "id": "ATT-0015",
+    "employeeId": "EMP-0002",
+    "date": "2026-03-03",
+    "status": "present",
+    "checkIn": "08:15",
+    "checkOut": "17:15",
+    "workHours": 9.0
+  },
+  {
+    "id": "ATT-0016",
+    "employeeId": "EMP-0002",
+    "date": "2026-03-04",
+    "status": "present",
+    "checkIn": "08:00",
+    "checkOut": "17:00",
+    "workHours": 9.0
+  },
+  {
+    "id": "ATT-0017",
+    "employeeId": "EMP-0002",
+    "date": "2026-03-05",
+    "status": "present",
+    "checkIn": "08:05",
+    "checkOut": "17:10",
+    "workHours": 9.08
+  },
+  {
+    "id": "ATT-0018",
+    "employeeId": "EMP-0002",
+    "date": "2026-03-06",
+    "status": "weekend"
+  },
+  {
+    "id": "ATT-0019",
+    "employeeId": "EMP-0002",
+    "date": "2026-03-07",
+    "status": "weekend"
+  },
+  {
+    "id": "ATT-0020",
+    "employeeId": "EMP-0002",
+    "date": "2026-03-08",
+    "status": "present",
+    "checkIn": "08:00",
+    "checkOut": "17:00",
+    "workHours": 9.0
+  },
+  {
+    "id": "ATT-0021",
+    "employeeId": "EMP-0002",
+    "date": "2026-03-09",
+    "status": "present",
+    "checkIn": "08:00",
+    "checkOut": "17:00",
+    "workHours": 9.0
+  },
+  {
+    "id": "ATT-0022",
+    "employeeId": "EMP-0002",
+    "date": "2026-03-10",
+    "status": "late",
+    "checkIn": "09:15",
+    "checkOut": "17:00",
+    "workHours": 7.75
+  },
+  {
+    "id": "ATT-0023",
+    "employeeId": "EMP-0002",
+    "date": "2026-03-11",
+    "status": "present",
+    "checkIn": "08:05",
+    "checkOut": "17:05",
+    "workHours": 9.0
+  },
+  {
+    "id": "ATT-0024",
+    "employeeId": "EMP-0002",
+    "date": "2026-03-12",
+    "status": "present",
+    "checkIn": "08:30",
+    "workHours": null
+  }
+]
