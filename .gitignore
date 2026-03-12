@@ -25,7 +25,7 @@ pnpm-debug.log*
 
 # Claude Code
 .claude/
-
+CLAUDE.md
 # Editor & OS
 .vscode/*
 !.vscode/extensions.json
