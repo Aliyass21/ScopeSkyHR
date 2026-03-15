@@ -160,3 +160,92 @@ html[dir='ltr'] body {
 .org-branch:only-child::after {
   display: none;
 }
+
+/* ── Login page: blob animation ── */
+@keyframes blob-float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(28px, -45px) scale(1.08); }
+  66%       { transform: translate(-18px, 22px) scale(0.94); }
+}
+
+.animate-blob {
+  animation: blob-float 10s ease-in-out infinite;
+}
+
+.animation-delay-2000 { animation-delay: -3.3s; }
+.animation-delay-4000 { animation-delay: -6.6s; }
+
+/* ── Login page: subtle grid overlay ── */
+.bg-login-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* ── Login page: radar/sonar rings ── */
+@keyframes radar-ring {
+  0%   { transform: translate(-50%, -50%) scale(0.8); opacity: 0.5; }
+  100% { transform: translate(-50%, -50%) scale(2.5); opacity: 0;   }
+}
+.radar-ring {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  border: 1px solid rgba(99, 102, 241, 0.22);
+  pointer-events: none;
+  animation: radar-ring 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  will-change: transform, opacity;
+}
+.radar-ring-1 { animation-delay: 0s; }
+.radar-ring-2 { animation-delay: -1.33s; }
+.radar-ring-3 { animation-delay: -2.66s; }
+
+/* ── Login page: floating ambient particles ── */
+@keyframes particle-float {
+  0%   { transform: translateY(0);     opacity: 0;    }
+  15%  { opacity: 0.35; }
+  85%  { opacity: 0.2;  }
+  100% { transform: translateY(-80px); opacity: 0;    }
+}
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.25);
+  pointer-events: none;
+  animation: particle-float linear infinite;
+  will-change: transform, opacity;
+}
+
+/* ── Login page: diagonal light streak ── */
+@keyframes streak-sweep {
+  0%   { transform: rotate(35deg) translateX(-120vw); opacity: 0;    }
+  5%   { opacity: 0.15; }
+  50%  { opacity: 0.12; }
+  95%  { opacity: 0;    }
+  100% { transform: rotate(35deg) translateX(120vw);  opacity: 0;    }
+}
+.light-streak {
+  position: absolute;
+  top: -20%; left: -10%;
+  width: 1.5px; height: 200vh;
+  background: linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.8) 30%, rgba(200,220,255,0.9) 50%, rgba(255,255,255,0.8) 70%, transparent 100%);
+  pointer-events: none;
+  transform-origin: top center;
+  animation: streak-sweep 9s ease-in-out infinite;
+  animation-delay: -1.5s;
+  will-change: transform, opacity;
+}
+
+/* ── Login page: blob opacity pulse ── */
+@keyframes blob-color-pulse {
+  0%, 100% { opacity: 0.6; }
+  50%       { opacity: 1.0; }
+}
+.animate-blob-full {
+  animation:
+    blob-float       10s ease-in-out infinite,
+    blob-color-pulse  5s ease-in-out infinite;
+}

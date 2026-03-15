@@ -348,5 +348,19 @@
     "generic": "حدث خطأ، يرجى المحاولة مرة أخرى",
     "notFound": "الصفحة غير موجودة",
     "loadFailed": "فشل تحميل البيانات"
+  },
+  "login": {
+    "title": "مرحباً بعودتك",
+    "subtitle": "سجّل دخولك إلى حساب CoreHR",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "signIn": "تسجيل الدخول",
+    "signingIn": "جارٍ تسجيل الدخول...",
+    "invalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
+    "fillAllFields": "يرجى ملء جميع الحقول",
+    "demoCredentials": "بيانات تجريبية",
+    "welcomeBack": "مرحباً بك مجدداً في CoreHR",
+    "allRightsReserved": "جميع الحقوق محفوظة",
+    "signOut": "تسجيل الخروج"
   }
 }

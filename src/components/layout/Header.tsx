@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
-import { Bell, Globe, Palette } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+import { Bell, Globe, LogOut, Palette } from 'lucide-react'
 import type { AppTheme } from '@/store/uiStore'
 import { Button } from '@/components/ui/button'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
@@ -15,7 +16,8 @@ import { useUiStore } from '@/store/uiStore'
 
 export const Header: React.FC = () => {
   const { t } = useTranslation()
-  const { language, setLanguage, theme, setTheme } = useUiStore()
+  const navigate = useNavigate()
+  const { language, setLanguage, theme, setTheme, logout } = useUiStore()
 
   const themes: { value: AppTheme; labelAr: string; labelEn: string; dot: string }[] = [
     { value: 'default',     labelAr: 'فاتح',        labelEn: 'Light',       dot: 'bg-indigo-500' },
@@ -104,6 +106,17 @@ export const Header: React.FC = () => {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>{t('nav.settings')}</DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+              className="text-destructive focus:text-destructive"
+              onClick={() => {
+                logout()
+                navigate('/login', { replace: true })
+              }}
+            >
+              <LogOut size={14} className="me-2" />
+              {t('login.signOut')}
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>

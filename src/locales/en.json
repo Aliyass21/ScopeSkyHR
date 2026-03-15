@@ -348,5 +348,19 @@
     "generic": "An error occurred, please try again",
     "notFound": "Page not found",
     "loadFailed": "Failed to load data"
+  },
+  "login": {
+    "title": "Welcome back",
+    "subtitle": "Sign in to your CoreHR account",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign In",
+    "signingIn": "Signing in...",
+    "invalidCredentials": "Invalid email or password",
+    "fillAllFields": "Please fill in all fields",
+    "demoCredentials": "Demo credentials",
+    "welcomeBack": "Welcome back to CoreHR",
+    "allRightsReserved": "All rights reserved",
+    "signOut": "Sign Out"
   }
 }

@@ -7,10 +7,13 @@ interface UiState {
   sidebarCollapsed: boolean
   language: 'ar' | 'en'
   theme: AppTheme
+  isAuthenticated: boolean
   toggleSidebar: () => void
   setSidebarCollapsed: (v: boolean) => void
   setLanguage: (lang: 'ar' | 'en') => void
   setTheme: (theme: AppTheme) => void
+  login: () => void
+  logout: () => void
 }
 
 function applyTheme(theme: AppTheme) {
@@ -25,6 +28,7 @@ export const useUiStore = create<UiState>((set) => ({
   sidebarCollapsed: false,
   language: 'ar',
   theme: 'default',
+  isAuthenticated: sessionStorage.getItem('corehr_auth') === '1',
   toggleSidebar: () => set((s) => ({ sidebarCollapsed: !s.sidebarCollapsed })),
   setSidebarCollapsed: (v) => set({ sidebarCollapsed: v }),
   setLanguage: (lang) => {
@@ -36,5 +40,13 @@ export const useUiStore = create<UiState>((set) => ({
   setTheme: (theme) => {
     applyTheme(theme)
     set({ theme })
+  },
+  login: () => {
+    sessionStorage.setItem('corehr_auth', '1')
+    set({ isAuthenticated: true })
+  },
+  logout: () => {
+    sessionStorage.removeItem('corehr_auth')
+    set({ isAuthenticated: false })
   },
 }))
