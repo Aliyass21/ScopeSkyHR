@@ -1,8 +1,8 @@
 export interface KpiStats {
   totalEmployees: number
+  activeEmployees: number
   presentToday: number
   onLeave: number
-  openPositions: number
 }
 
 export interface HeadcountDataPoint {

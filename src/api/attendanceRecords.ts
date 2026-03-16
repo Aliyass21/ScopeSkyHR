@@ -2,9 +2,19 @@ import { apiClient } from './client'
 import type { ApiResponse, AttendanceStatisticsDto, AttendanceRecordDto } from '@/types/api'
 import { parsePaginationHeader, DEFAULT_PAGE_SIZE } from '@/utils/pagination'
 
-export async function getAttendanceStatisticsApi(): Promise<AttendanceStatisticsDto | null> {
+export interface GetAttendanceStatisticsParams {
+  projectId?: string
+  locationNodeId?: string
+  fromDate?: string
+  toDate?: string
+}
+
+export async function getAttendanceStatisticsApi(
+  params?: GetAttendanceStatisticsParams,
+): Promise<AttendanceStatisticsDto | null> {
   const { data: body } = await apiClient.get<ApiResponse<AttendanceStatisticsDto>>(
-    '/api/attendance/statistics'
+    '/api/attendance/statistics',
+    { params },
   )
   return body.succeeded ? body.data : null
 }

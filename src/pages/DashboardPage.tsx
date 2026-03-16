@@ -7,23 +7,28 @@ import { StatsRow } from '@/components/dashboard/StatsRow'
 import { HeadcountChart } from '@/components/dashboard/HeadcountChart'
 import { ActivityFeed } from '@/components/dashboard/ActivityFeed'
 import { WelcomeBanner } from '@/components/dashboard/WelcomeBanner'
-import { DepartmentChart } from '@/components/dashboard/DepartmentChart'
+import { LocationChart } from '@/components/dashboard/LocationChart'
 import { AttendanceRing } from '@/components/dashboard/AttendanceRing'
 import { UpcomingEvents } from '@/components/dashboard/UpcomingEvents'
+import { DashboardFilters } from '@/components/dashboard/DashboardFilters'
 import { LoadingSkeleton } from '@/components/shared/LoadingSkeleton'
 import { getDashboardData } from '@/api/dashboard'
 import { useDashboardStats } from '@/hooks/useDashboardStats'
+import type { DashboardFilters as Filters } from '@/hooks/useDashboardStats'
 import type { DashboardData } from '@/types/dashboard'
 
 export default function DashboardPage() {
   const { t } = useTranslation()
   const navigate = useNavigate()
+
+  // Supplemental mock data (headcount chart, activity feed, upcoming events)
   const [mockData, setMockData] = useState<DashboardData | null>(null)
   const [mockLoading, setMockLoading] = useState(true)
 
-  // Real API: KPI stats + attendance summary
-  const { kpiStats, attendanceToday: realAttendance, isLoading: statsLoading } =
-    useDashboardStats()
+  // Filterable real stats
+  const [filters, setFilters] = useState<Filters>({})
+  const { kpiStats, attendanceToday, profileStats, isLoading: statsLoading } =
+    useDashboardStats(filters)
 
   useEffect(() => {
     getDashboardData()
@@ -31,51 +36,66 @@ export default function DashboardPage() {
       .finally(() => setMockLoading(false))
   }, [])
 
-  // Show skeleton until at least the mock shell is ready
-  const loading = mockLoading && statsLoading
+  const loading = statsLoading && mockLoading
 
-  // Prefer real stats; fall back to mock while API loads
-  const stats = kpiStats ?? mockData?.stats
-  const attendanceTodayData = realAttendance ?? mockData?.attendanceToday
-
-  const attendanceRate = attendanceTodayData
-    ? Math.round((attendanceTodayData.present / Math.max(attendanceTodayData.total, 1)) * 100)
-    : 0
+  const attendanceRate =
+    attendanceToday && attendanceToday.total > 0
+      ? Math.round((attendanceToday.present / attendanceToday.total) * 100)
+      : 0
 
   return (
     <PageWrapper title={t('dashboard.title')}>
       {loading ? (
         <LoadingSkeleton type="card" />
-      ) : mockData ? (
+      ) : (
         <div className="space-y-6">
           {/* Welcome banner */}
           <WelcomeBanner
             attendanceRate={attendanceRate}
-            presentToday={stats?.presentToday ?? 0}
-            totalEmployees={stats?.totalEmployees ?? 0}
+            presentToday={kpiStats?.presentToday ?? 0}
+            totalEmployees={kpiStats?.totalEmployees ?? 0}
           />
 
+          {/* Filter bar */}
+          <DashboardFilters filters={filters} onChange={setFilters} />
+
           {/* KPI stats */}
-          {stats && <StatsRow stats={stats} />}
+          {kpiStats && <StatsRow stats={kpiStats} />}
+          {!kpiStats && statsLoading && <LoadingSkeleton type="card" />}
 
           {/* Headcount trend + Activity feed */}
-          <div className="grid gap-6 lg:grid-cols-5">
-            <div className="lg:col-span-3">
-              <HeadcountChart data={mockData.headcountTrend} />
+          {mockData && (
+            <div className="grid gap-6 lg:grid-cols-5">
+              <div className="lg:col-span-3">
+                <HeadcountChart data={mockData.headcountTrend} />
+              </div>
+              <div className="lg:col-span-2">
+                <ActivityFeed items={mockData.recentActivity} />
+              </div>
             </div>
-            <div className="lg:col-span-2">
-              <ActivityFeed items={mockData.recentActivity} />
-            </div>
-          </div>
+          )}
 
-          {/* Department donut + Attendance ring + Upcoming events */}
+          {/* Location chart + Attendance ring + Upcoming events */}
           <div className="grid gap-6 lg:grid-cols-3">
-            <DepartmentChart data={mockData.departmentDistribution} />
-            <AttendanceRing data={attendanceTodayData ?? mockData.attendanceToday} />
-            <UpcomingEvents
-              events={mockData.upcomingEvents}
-              pendingLeaves={mockData.leaveOverview.pendingApprovals}
-            />
+            {profileStats ? (
+              <LocationChart profileStats={profileStats} />
+            ) : (
+              mockData && <LocationChart profileStats={{
+                totalProfiles: 0, activeProfiles: 0, inactiveProfiles: 0,
+                terminatedProfiles: 0, byProfileType: {}, byLocation: [], byPosition: [], recentHires: 0,
+              }} />
+            )}
+            {attendanceToday ? (
+              <AttendanceRing data={attendanceToday} />
+            ) : (
+              mockData && <AttendanceRing data={mockData.attendanceToday} />
+            )}
+            {mockData && (
+              <UpcomingEvents
+                events={mockData.upcomingEvents}
+                pendingLeaves={mockData.leaveOverview.pendingApprovals}
+              />
+            )}
           </div>
 
           {/* Quick actions */}
@@ -103,12 +123,13 @@ export default function DashboardPage() {
                 iconClass="bg-orange-100 text-orange-600 group-hover:bg-orange-600 group-hover:text-white"
                 title={t('dashboard.newLeaveRequest')}
                 desc={t('dashboard.newLeaveRequestDesc')}
-                onClick={() => navigate('/leave')}
+                onClick={() => navigate('/leave')
+              }
               />
             </div>
           </div>
         </div>
-      ) : null}
+      )}
     </PageWrapper>
   )
 }

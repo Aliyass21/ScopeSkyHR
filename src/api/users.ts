@@ -41,9 +41,22 @@ export async function deleteUserApi(id: string): Promise<void> {
   await apiClient.delete(`/api/users/${id}`)
 }
 
-export async function getUserStatisticsApi(): Promise<ProfileStatisticsDto | null> {
+export interface GetStatisticsParams {
+  projectId?: string
+  excludeLocations?: boolean
+  positionId?: string
+  profileType?: string
+  locationNodeId?: string
+  gender?: string
+  isActive?: boolean
+}
+
+export async function getUserStatisticsApi(
+  params?: GetStatisticsParams,
+): Promise<ProfileStatisticsDto | null> {
   const { data: body } = await apiClient.get<ApiResponse<ProfileStatisticsDto>>(
-    '/api/users/statistics'
+    '/api/users/statistics',
+    { params },
   )
   return body.succeeded ? body.data : null
 }
