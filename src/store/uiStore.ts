@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import i18n from '@/i18n'
+import { getPersistedAccessToken, useAuthStore } from '@/store/authStore'
 
 export type AppTheme = 'default' | 'dark' | 'light-green' | 'dark-green'
 
@@ -28,7 +29,7 @@ export const useUiStore = create<UiState>((set) => ({
   sidebarCollapsed: false,
   language: 'ar',
   theme: 'default',
-  isAuthenticated: sessionStorage.getItem('corehr_auth') === '1',
+  isAuthenticated: getPersistedAccessToken() !== null,
   toggleSidebar: () => set((s) => ({ sidebarCollapsed: !s.sidebarCollapsed })),
   setSidebarCollapsed: (v) => set({ sidebarCollapsed: v }),
   setLanguage: (lang) => {
@@ -42,11 +43,10 @@ export const useUiStore = create<UiState>((set) => ({
     set({ theme })
   },
   login: () => {
-    sessionStorage.setItem('corehr_auth', '1')
     set({ isAuthenticated: true })
   },
   logout: () => {
-    sessionStorage.removeItem('corehr_auth')
+    useAuthStore.getState().clearAuth()
     set({ isAuthenticated: false })
   },
 }))

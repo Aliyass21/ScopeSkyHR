@@ -1,42 +1,47 @@
 import { useState } from 'react'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { useMutation } from '@tanstack/react-query'
 import { toast } from 'sonner'
 import { useUiStore } from '@/store/uiStore'
+import { useAuthStore } from '@/store/authStore'
+import { loginApi } from '@/api/auth'
 
 export default function LoginPage() {
   const { t } = useTranslation()
-  const navigate = useNavigate()
-  const { language, setLanguage, login, isAuthenticated } = useUiStore()
+  const { language, setLanguage } = useUiStore()
 
-  const [email, setEmail] = useState('')
+  const { setAuth, accessToken } = useAuthStore()
+
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [showPassword, setShowPassword] = useState(false)
 
-  if (isAuthenticated) return <Navigate to="/" replace />
+  // All hooks must be called before any early return
+  const { mutate: doLogin, isPending: loading } = useMutation({
+    mutationFn: loginApi,
+    onSuccess: (response) => {
+      // API returns TokenResponse directly (no ApiResponse wrapper on this endpoint)
+      setAuth(response)
+      toast.success(t('login.welcomeBack'))
+    },
+    onError: () => {
+      setError(t('login.invalidCredentials'))
+    },
+  })
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  // Already authenticated — redirect after all hooks are declared
+  if (accessToken !== null) return <Navigate to="/" replace />
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
-
-    if (!email || !password) {
+    if (!username || !password) {
       setError(t('login.fillAllFields'))
       return
     }
-
-    setLoading(true)
-    await new Promise((r) => setTimeout(r, 1100))
-
-    if (email === 'admin@corehr.com' && password === 'CoreHR2026') {
-      login()
-      toast.success(t('login.welcomeBack'))
-      navigate('/', { replace: true })
-    } else {
-      setError(t('login.invalidCredentials'))
-    }
-    setLoading(false)
+    doLogin({ username, password, rememberMe: true })
   }
 
   return (
@@ -159,9 +164,9 @@ export default function LoginPage() {
               </label>
               <input
                 type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="admin@corehr.com"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder=""
                 autoComplete="email"
                 className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/20 outline-none transition focus:border-indigo-500/50 focus:bg-white/8 focus:ring-2 focus:ring-indigo-500/25"
               />
@@ -229,26 +234,6 @@ export default function LoginPage() {
             </button>
           </form>
 
-          {/* Demo credentials hint */}
-          <div className="mt-6 rounded-2xl border border-white/[0.06] bg-white/[0.03] p-4">
-            <p className="mb-2.5 text-[10px] font-semibold uppercase tracking-widest text-white/30">
-              {t('login.demoCredentials')}
-            </p>
-            <div className="space-y-1.5">
-              <div className="flex items-center justify-between gap-2">
-                <span className="text-xs text-white/30">{t('login.email')}</span>
-                <code className="rounded-md bg-white/5 px-2 py-0.5 text-xs text-white/60">
-                  admin@corehr.com
-                </code>
-              </div>
-              <div className="flex items-center justify-between gap-2">
-                <span className="text-xs text-white/30">{t('login.password')}</span>
-                <code className="rounded-md bg-white/5 px-2 py-0.5 text-xs text-white/60">
-                  CoreHR2026
-                </code>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Footer */}
