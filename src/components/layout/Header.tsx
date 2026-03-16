@@ -13,11 +13,19 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { useUiStore } from '@/store/uiStore'
+import { useAuthStore } from '@/store/authStore'
+import { useTokenClaims } from '@/hooks/usePermission'
 
 export const Header: React.FC = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const { language, setLanguage, theme, setTheme, logout } = useUiStore()
+  const user = useAuthStore((s) => s.user)
+  const { roles } = useTokenClaims()
+
+  const displayName = user?.profile?.fullName || user?.userName || ''
+  const displayRole = roles[0] ?? ''
+  const avatarSeed = user?.userName ?? 'default'
 
   const themes: { value: AppTheme; labelAr: string; labelEn: string; dot: string }[] = [
     { value: 'default',     labelAr: 'فاتح',        labelEn: 'Light',       dot: 'bg-indigo-500' },
@@ -92,17 +100,17 @@ export const Header: React.FC = () => {
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="flex items-center gap-2 px-2">
               <Avatar className="h-8 w-8">
-                <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=Admin" />
-                <AvatarFallback>HR</AvatarFallback>
+                <AvatarImage src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${avatarSeed}`} />
+                <AvatarFallback>{displayName.slice(0, 2).toUpperCase() || 'HR'}</AvatarFallback>
               </Avatar>
               <span className="hidden text-sm font-medium sm:block">
-                {language === 'ar' ? 'سارة العتيبي' : 'Sara Al-Otaibi'}
+                {displayName}
               </span>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>
-              {language === 'ar' ? 'مدير الموارد البشرية' : 'HR Manager'}
+              {displayRole || (language === 'ar' ? 'مستخدم' : 'User')}
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>{t('nav.settings')}</DropdownMenuItem>

@@ -16,28 +16,38 @@ import { cn } from '@/lib/utils'
 import { useUiStore } from '@/store/uiStore'
 import { Button } from '@/components/ui/button'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+import { useTokenClaims, useIsAdmin } from '@/hooks/usePermission'
+import { PERMISSIONS } from '@/utils/permissions'
 
 interface NavItem {
   key: string
   path: string
   icon: React.ReactNode
+  /** Permission code required to see this item (admin always sees all). */
+  permission?: string
 }
 
 const navItems: NavItem[] = [
-  { key: 'nav.dashboard', path: '/', icon: <LayoutDashboard size={20} /> },
-  { key: 'nav.employees', path: '/employees', icon: <Users size={20} /> },
-  { key: 'nav.attendance', path: '/attendance', icon: <Clock size={20} /> },
-  { key: 'nav.leave', path: '/leave', icon: <CalendarDays size={20} /> },
-  { key: 'nav.payroll', path: '/payroll', icon: <Banknote size={20} /> },
+  { key: 'nav.dashboard',   path: '/',            icon: <LayoutDashboard size={20} /> },
+  { key: 'nav.employees',   path: '/employees',   icon: <Users size={20} />,        permission: PERMISSIONS.VIEW_EMPLOYEE },
+  { key: 'nav.attendance',  path: '/attendance',  icon: <Clock size={20} />,        permission: PERMISSIONS.VIEW_ATTENDANCE },
+  { key: 'nav.leave',       path: '/leave',       icon: <CalendarDays size={20} />, permission: PERMISSIONS.VIEW_LEAVE_REQUESTS },
+  { key: 'nav.payroll',     path: '/payroll',     icon: <Banknote size={20} /> },
   { key: 'nav.recruitment', path: '/recruitment', icon: <Briefcase size={20} /> },
-  { key: 'nav.orgchart', path: '/orgchart', icon: <Network size={20} /> },
-  { key: 'nav.settings', path: '/settings', icon: <Settings size={20} /> },
+  { key: 'nav.orgchart',    path: '/orgchart',    icon: <Network size={20} />,      permission: PERMISSIONS.VIEW_LOCATION },
+  { key: 'nav.settings',    path: '/settings',    icon: <Settings size={20} />,     permission: PERMISSIONS.VIEW_SYSTEM_CONFIG },
 ]
 
 export const Sidebar: React.FC = () => {
   const { t } = useTranslation()
   const { sidebarCollapsed, toggleSidebar, language } = useUiStore()
   const location = useLocation()
+  const isAdmin = useIsAdmin()
+  const { permissions } = useTokenClaims()
+
+  const visibleItems = navItems.filter(
+    (item) => !item.permission || isAdmin || permissions.includes(item.permission)
+  )
   const isRtl = language === 'ar'
   const CollapseIcon = isRtl
     ? sidebarCollapsed ? ChevronLeft : ChevronRight
@@ -69,7 +79,7 @@ export const Sidebar: React.FC = () => {
 
       {/* Nav */}
       <nav className="flex-1 space-y-1 px-2 py-4">
-        {navItems.map((item) => {
+        {visibleItems.map((item) => {
           const isActive =
             item.path === '/'
               ? location.pathname === '/'
