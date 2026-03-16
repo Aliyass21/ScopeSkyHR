@@ -12,56 +12,69 @@ import { AttendanceRing } from '@/components/dashboard/AttendanceRing'
 import { UpcomingEvents } from '@/components/dashboard/UpcomingEvents'
 import { LoadingSkeleton } from '@/components/shared/LoadingSkeleton'
 import { getDashboardData } from '@/api/dashboard'
+import { useDashboardStats } from '@/hooks/useDashboardStats'
 import type { DashboardData } from '@/types/dashboard'
 
 export default function DashboardPage() {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const [data, setData] = useState<DashboardData | null>(null)
-  const [loading, setLoading] = useState(true)
+  const [mockData, setMockData] = useState<DashboardData | null>(null)
+  const [mockLoading, setMockLoading] = useState(true)
+
+  // Real API: KPI stats + attendance summary
+  const { kpiStats, attendanceToday: realAttendance, isLoading: statsLoading } =
+    useDashboardStats()
 
   useEffect(() => {
     getDashboardData()
-      .then(setData)
-      .finally(() => setLoading(false))
+      .then(setMockData)
+      .finally(() => setMockLoading(false))
   }, [])
 
-  const attendanceRate =
-    data ? Math.round((data.attendanceToday.present / data.attendanceToday.total) * 100) : 0
+  // Show skeleton until at least the mock shell is ready
+  const loading = mockLoading && statsLoading
+
+  // Prefer real stats; fall back to mock while API loads
+  const stats = kpiStats ?? mockData?.stats
+  const attendanceTodayData = realAttendance ?? mockData?.attendanceToday
+
+  const attendanceRate = attendanceTodayData
+    ? Math.round((attendanceTodayData.present / Math.max(attendanceTodayData.total, 1)) * 100)
+    : 0
 
   return (
     <PageWrapper title={t('dashboard.title')}>
       {loading ? (
         <LoadingSkeleton type="card" />
-      ) : data ? (
+      ) : mockData ? (
         <div className="space-y-6">
           {/* Welcome banner */}
           <WelcomeBanner
             attendanceRate={attendanceRate}
-            presentToday={data.stats.presentToday}
-            totalEmployees={data.stats.totalEmployees}
+            presentToday={stats?.presentToday ?? 0}
+            totalEmployees={stats?.totalEmployees ?? 0}
           />
 
           {/* KPI stats */}
-          <StatsRow stats={data.stats} />
+          {stats && <StatsRow stats={stats} />}
 
           {/* Headcount trend + Activity feed */}
           <div className="grid gap-6 lg:grid-cols-5">
             <div className="lg:col-span-3">
-              <HeadcountChart data={data.headcountTrend} />
+              <HeadcountChart data={mockData.headcountTrend} />
             </div>
             <div className="lg:col-span-2">
-              <ActivityFeed items={data.recentActivity} />
+              <ActivityFeed items={mockData.recentActivity} />
             </div>
           </div>
 
           {/* Department donut + Attendance ring + Upcoming events */}
           <div className="grid gap-6 lg:grid-cols-3">
-            <DepartmentChart data={data.departmentDistribution} />
-            <AttendanceRing data={data.attendanceToday} />
+            <DepartmentChart data={mockData.departmentDistribution} />
+            <AttendanceRing data={attendanceTodayData ?? mockData.attendanceToday} />
             <UpcomingEvents
-              events={data.upcomingEvents}
-              pendingLeaves={data.leaveOverview.pendingApprovals}
+              events={mockData.upcomingEvents}
+              pendingLeaves={mockData.leaveOverview.pendingApprovals}
             />
           </div>
 
