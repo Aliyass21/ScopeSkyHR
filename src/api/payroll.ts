@@ -1,6 +1,6 @@
 import { mockDelay } from '@/utils/mockDelay'
 import rawData from '@/data/payroll.json'
-import { getEmployees } from '@/api/employees'
+import { getUsersApi } from '@/api/users'
 import type { PayrollRecord, PayrollRunInput } from '@/types/payroll'
 
 let store: PayrollRecord[] = rawData as PayrollRecord[]
@@ -36,34 +36,33 @@ export async function runPayroll(input: PayrollRunInput): Promise<PayrollRecord[
     return store.filter((r) => r.month === input.month && r.year === input.year)
   }
 
-  // Generate new records for all active employees
-  const employees = await getEmployees()
+  // Generate new records for all active employees (mock salaries since API doesn't expose salary)
+  const { users } = await getUsersApi({ pageSize: 100, isActive: true })
   const now = new Date().toISOString()
-  const newRecords: PayrollRecord[] = employees
-    .filter((e) => e.status !== 'inactive')
-    .map((e) => {
-      const basic = e.salary
-      const housing = Math.round(basic * 0.25)
-      const transport = 1500
-      const deductions = Math.round(basic * 0.10)
-      const gross = basic + housing + transport
-      const net = gross - deductions
-      const rec: PayrollRecord = {
-        id: `PAY-${String(nextId++).padStart(4, '0')}`,
-        employeeId: e.id,
-        month: input.month,
-        year: input.year,
-        basicSalary: basic,
-        housing,
-        transport,
-        deductions,
-        grossPay: gross,
-        netPay: net,
-        status: 'processed',
-        processedAt: now,
-      }
-      return rec
-    })
+  const MOCK_SALARY = 15000 // placeholder salary for demo
+  const newRecords: PayrollRecord[] = users.map((u) => {
+    const basic = MOCK_SALARY
+    const housing = Math.round(basic * 0.25)
+    const transport = 1500
+    const deductions = Math.round(basic * 0.10)
+    const gross = basic + housing + transport
+    const net = gross - deductions
+    const rec: PayrollRecord = {
+      id: `PAY-${String(nextId++).padStart(4, '0')}`,
+      employeeId: u.id,
+      month: input.month,
+      year: input.year,
+      basicSalary: basic,
+      housing,
+      transport,
+      deductions,
+      grossPay: gross,
+      netPay: net,
+      status: 'processed',
+      processedAt: now,
+    }
+    return rec
+  })
 
   store = [...store, ...newRecords]
   return newRecords

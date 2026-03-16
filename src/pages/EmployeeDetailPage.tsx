@@ -7,9 +7,28 @@ import { EmployeeProfile } from '@/components/employees/EmployeeProfile'
 import { EmployeeForm } from '@/components/employees/EmployeeForm'
 import { LoadingSkeleton } from '@/components/shared/LoadingSkeleton'
 import { Button } from '@/components/ui/button'
-import { getEmployee } from '@/api/employees'
+import { getUserApi } from '@/api/users'
 import { useUiStore } from '@/store/uiStore'
 import type { Employee } from '@/types/employee'
+import type { UserWithProfile } from '@/types/api'
+
+function mapToEmployee(user: UserWithProfile): Employee {
+  const p = user.profile
+  return {
+    id: user.id,
+    nameAr: p?.fullName ?? user.userName,
+    nameEn: p?.fullName ?? user.userName,
+    email: user.email,
+    phone: p?.phoneNumber ?? user.phoneNumber ?? '',
+    department: 'hr',
+    position: p?.positionTitle ?? user.roles[0] ?? '',
+    positionAr: p?.positionTitle ?? user.roles[0] ?? '',
+    status: user.isActive ? 'active' : 'inactive',
+    hireDate: p?.employeeData?.hireDate ?? '',
+    salary: 0,
+    avatarUrl: `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(user.userName)}`,
+  }
+}
 
 export default function EmployeeDetailPage() {
   const { id } = useParams<{ id: string }>()
@@ -23,8 +42,8 @@ export default function EmployeeDetailPage() {
 
   useEffect(() => {
     if (!id) return
-    getEmployee(id)
-      .then(setEmployee)
+    getUserApi(id)
+      .then((user) => setEmployee(user ? mapToEmployee(user) : null))
       .finally(() => setLoading(false))
   }, [id])
 
