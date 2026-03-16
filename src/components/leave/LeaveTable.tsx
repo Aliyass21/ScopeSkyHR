@@ -74,7 +74,9 @@ export const LeaveTable: React.FC = () => {
               {requests.map((request) => (
                 <tr key={request.id} className="bg-card hover:bg-muted/30 transition-colors">
                   <td className="px-4 py-3 font-medium">{getEmployeeName(request.employeeId)}</td>
-                  <td className="px-4 py-3 text-muted-foreground">{t(`leave.types.${request.type}`)}</td>
+                  <td className="px-4 py-3 text-muted-foreground">
+                    {request.leaveTypeName ?? t(`leave.types.${request.type}`)}
+                  </td>
                   <td className="px-4 py-3 text-muted-foreground">
                     {format(new Date(request.startDate), 'MMM d, yyyy')}
                   </td>

@@ -107,6 +107,7 @@
     "deleteEmployee": "حذف موظف",
     "deleteConfirm": "هل أنت متأكد من حذف هذا الموظف؟ لا يمكن التراجع عن هذا الإجراء.",
     "employeeId": "رقم الموظف",
+    "employeeNumber": "رقم الموظف",
     "nameAr": "الاسم بالعربية",
     "nameEn": "الاسم بالإنجليزية",
     "hireDate": "تاريخ التعيين",
@@ -127,6 +128,34 @@
       "editTitle": "تعديل بيانات الموظف",
       "photo": "الصورة الشخصية",
       "uploadPhoto": "رفع صورة",
+      "gender": "الجنس",
+      "genders": {
+        "male": "ذكر",
+        "female": "أنثى"
+      },
+      "profileType": "نوع الملف",
+      "profileTypes": {
+        "employee": "موظف",
+        "manager": "مدير",
+        "supervisor": "مشرف",
+        "hr": "موارد بشرية",
+        "admin": "مسؤول"
+      },
+      "shiftType": "نوع الدوام",
+      "shiftTypes": {
+        "fixed": "ثابت",
+        "flexible": "مرن"
+      },
+      "weeklyOffDays": "أيام الإجازة الأسبوعية",
+      "days": {
+        "sunday": "أحد",
+        "monday": "اثنين",
+        "tuesday": "ثلاثاء",
+        "wednesday": "أربعاء",
+        "thursday": "خميس",
+        "friday": "جمعة",
+        "saturday": "سبت"
+      },
       "departments": {
         "engineering": "الهندسة",
         "hr": "الموارد البشرية",

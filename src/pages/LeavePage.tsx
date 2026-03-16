@@ -10,20 +10,20 @@ import { Button } from '@/components/ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useLeaveStore } from '@/store/leaveStore'
 import { useEmployeeStore } from '@/store/employeeStore'
-
-const CURRENT_EMPLOYEE_ID = 'EMP-0001'
+import { useAuthStore } from '@/store/authStore'
 
 export default function LeavePage() {
   const { t } = useTranslation()
   const { requests, balance, loading, fetchRequests, fetchBalance } = useLeaveStore()
   const { employees, fetchEmployees } = useEmployeeStore()
+  const profileId = useAuthStore((s) => s.user?.profile?.id)
   const [formOpen, setFormOpen] = useState(false)
 
   useEffect(() => {
     fetchRequests()
-    fetchBalance(CURRENT_EMPLOYEE_ID)
+    if (profileId) fetchBalance(profileId)
     if (employees.length === 0) fetchEmployees()
-  }, [])
+  }, [profileId])
 
   const pending = requests.filter((r) => r.status === 'pending')
 

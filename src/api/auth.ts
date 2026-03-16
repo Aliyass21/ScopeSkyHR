@@ -1,5 +1,5 @@
 import { apiClient } from './client'
-import type { ApiResponse, LoginRequest, TokenResponse } from '@/types/api'
+import type { ApiResponse, LoginRequest, TokenResponse, CreateUserWithProfileDto, ProfileDto } from '@/types/api'
 
 // NOTE: /api/auth/login returns TokenResponse directly (no ApiResponse wrapper).
 export async function loginApi(request: LoginRequest): Promise<TokenResponse> {
@@ -26,4 +26,13 @@ export async function revokeTokenApi(refreshToken: string | null): Promise<void>
     revokeAll: false,
     reason: null,
   })
+}
+
+export async function createUserApi(
+  body: CreateUserWithProfileDto,
+): Promise<{ userId: string; profile: ProfileDto } | null> {
+  const { data: res } = await apiClient.post<
+    ApiResponse<{ userId: string; profile: ProfileDto }>
+  >('/api/auth/create-user', body)
+  return res.succeeded ? res.data : null
 }

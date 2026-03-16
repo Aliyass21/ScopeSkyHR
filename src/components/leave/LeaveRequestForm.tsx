@@ -3,6 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
+import { useQuery } from '@tanstack/react-query'
 import {
   Dialog,
   DialogContent,
@@ -22,19 +23,17 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { useLeaveStore } from '@/store/leaveStore'
-import type { LeaveType } from '@/types/leave'
+import { useAuthStore } from '@/store/authStore'
+import { getLeaveTypesApi } from '@/api/leaveTypes'
 
 const schema = z.object({
-  type: z.string(),
+  leaveTypeId: z.string().min(1),
   startDate: z.string(),
   endDate: z.string(),
   reason: z.string().min(5),
 })
 
 type FormData = z.infer<typeof schema>
-
-const leaveTypes: LeaveType[] = ['annual', 'sick', 'emergency', 'unpaid', 'maternity', 'paternity']
-const CURRENT_EMPLOYEE_ID = 'EMP-0001'
 
 interface LeaveRequestFormProps {
   open: boolean
@@ -44,7 +43,14 @@ interface LeaveRequestFormProps {
 export const LeaveRequestForm: React.FC<LeaveRequestFormProps> = ({ open, onOpenChange }) => {
   const { t } = useTranslation()
   const { createRequest } = useLeaveStore()
+  const profileId = useAuthStore((s) => s.user?.profile?.id)
   const today = new Date().toISOString().split('T')[0]
+
+  const { data: leaveTypes = [], isLoading: typesLoading } = useQuery({
+    queryKey: ['leave', 'types'],
+    queryFn: getLeaveTypesApi,
+    staleTime: 300_000,
+  })
 
   const {
     register,
@@ -56,7 +62,7 @@ export const LeaveRequestForm: React.FC<LeaveRequestFormProps> = ({ open, onOpen
   } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: {
-      type: 'annual',
+      leaveTypeId: '',
       startDate: today,
       endDate: today,
     },
@@ -67,13 +73,20 @@ export const LeaveRequestForm: React.FC<LeaveRequestFormProps> = ({ open, onOpen
       toast.error(t('validation.endDateAfterStart'))
       return
     }
+    if (!profileId) {
+      toast.error(t('errors.generic'))
+      return
+    }
     try {
       await createRequest({
-        employeeId: CURRENT_EMPLOYEE_ID,
-        type: data.type as LeaveType,
+        profileId,
+        leaveTypeId: data.leaveTypeId,
         startDate: data.startDate,
         endDate: data.endDate,
         reason: data.reason,
+        isShortTimeLeave: false,
+        replacementEmployeeId: null,
+        documentPath: null,
       })
       toast.success(t('leave.success.requested'))
       reset()
@@ -92,18 +105,25 @@ export const LeaveRequestForm: React.FC<LeaveRequestFormProps> = ({ open, onOpen
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="space-y-1.5">
             <Label>{t('leave.leaveType')}</Label>
-            <Select value={watch('type')} onValueChange={(v) => setValue('type', v)}>
+            <Select
+              value={watch('leaveTypeId')}
+              onValueChange={(v) => setValue('leaveTypeId', v)}
+              disabled={typesLoading}
+            >
               <SelectTrigger>
                 <SelectValue placeholder={t('leave.form.selectType')} />
               </SelectTrigger>
               <SelectContent>
                 {leaveTypes.map((type) => (
-                  <SelectItem key={type} value={type}>
-                    {t(`leave.types.${type}`)}
+                  <SelectItem key={type.id} value={type.id}>
+                    {type.name}
                   </SelectItem>
                 ))}
               </SelectContent>
             </Select>
+            {errors.leaveTypeId && (
+              <p className="text-xs text-destructive">{t('validation.required')}</p>
+            )}
           </div>
 
           <div className="grid grid-cols-2 gap-3">
@@ -113,7 +133,12 @@ export const LeaveRequestForm: React.FC<LeaveRequestFormProps> = ({ open, onOpen
             </div>
             <div className="space-y-1.5">
               <Label htmlFor="endDate">{t('leave.endDate')}</Label>
-              <Input id="endDate" type="date" {...register('endDate')} min={watch('startDate')} />
+              <Input
+                id="endDate"
+                type="date"
+                {...register('endDate')}
+                min={watch('startDate')}
+              />
             </div>
           </div>
 
@@ -124,14 +149,21 @@ export const LeaveRequestForm: React.FC<LeaveRequestFormProps> = ({ open, onOpen
               placeholder={t('leave.form.reasonPlaceholder')}
               {...register('reason')}
             />
-            {errors.reason && <p className="text-xs text-destructive">{t('validation.required')}</p>}
+            {errors.reason && (
+              <p className="text-xs text-destructive">{t('validation.required')}</p>
+            )}
           </div>
 
           <DialogFooter className="gap-2">
-            <Button type="button" variant="outline" onClick={() => onOpenChange(false)} disabled={isSubmitting}>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => onOpenChange(false)}
+              disabled={isSubmitting}
+            >
               {t('common.cancel')}
             </Button>
-            <Button type="submit" disabled={isSubmitting}>
+            <Button type="submit" disabled={isSubmitting || !profileId}>
               {isSubmitting ? t('common.loading') : t('common.submit')}
             </Button>
           </DialogFooter>

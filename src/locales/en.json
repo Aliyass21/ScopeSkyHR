@@ -122,11 +122,40 @@
       "attendance": "Attendance Record",
       "leaves": "Leave History"
     },
+    "employeeNumber": "Employee Number",
     "form": {
       "addTitle": "Add New Employee",
       "editTitle": "Edit Employee",
       "photo": "Profile Photo",
       "uploadPhoto": "Upload Photo",
+      "gender": "Gender",
+      "genders": {
+        "male": "Male",
+        "female": "Female"
+      },
+      "profileType": "Profile Type",
+      "profileTypes": {
+        "employee": "Employee",
+        "manager": "Manager",
+        "supervisor": "Supervisor",
+        "hr": "HR",
+        "admin": "Admin"
+      },
+      "shiftType": "Shift Type",
+      "shiftTypes": {
+        "fixed": "Fixed",
+        "flexible": "Flexible"
+      },
+      "weeklyOffDays": "Weekly Off Days",
+      "days": {
+        "sunday": "Sun",
+        "monday": "Mon",
+        "tuesday": "Tue",
+        "wednesday": "Wed",
+        "thursday": "Thu",
+        "friday": "Fri",
+        "saturday": "Sat"
+      },
       "departments": {
         "engineering": "Engineering",
         "hr": "Human Resources",

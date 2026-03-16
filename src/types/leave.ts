@@ -5,6 +5,7 @@ export interface LeaveRequest {
   id: string
   employeeId: string
   type: LeaveType
+  leaveTypeName?: string        // from real API; used by LeaveTable when present
   startDate: string
   endDate: string
   durationDays: number

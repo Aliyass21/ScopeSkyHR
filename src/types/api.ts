@@ -343,3 +343,36 @@ export interface AttendanceStatisticsDto {
   absentCount: number
   presentCount: number
 }
+
+// ─── Mutation Request Bodies ──────────────────────────────────────────────────
+
+export interface CreateUserWithProfileDto {
+  username: string
+  password: string
+  fullName: string
+  gender: Gender
+  phoneNumber: string | null
+  address: string | null
+  employeeNumber: string
+  hireDate: string | null
+  locationNodeId: string | null
+  positionId: string | null
+  timeZone: string
+  profileType: ProfileType
+  projectId: string
+  role: string
+  shiftType: ShiftType
+  weeklyOffDays: number[]
+  hasMultiSite: boolean
+}
+
+export interface CreateLeaveRequestDto {
+  profileId: string
+  leaveTypeId: string
+  startDate: string
+  endDate: string
+  reason: string | null
+  isShortTimeLeave: boolean
+  replacementEmployeeId: string | null
+  documentPath: string | null
+}

@@ -1,5 +1,5 @@
 import { apiClient } from './client'
-import type { ApiResponse, UserDto, ProfileStatisticsDto } from '@/types/api'
+import type { ApiResponse, UserDto, UserWithProfile, ProfileStatisticsDto } from '@/types/api'
 import { parsePaginationHeader, DEFAULT_PAGE_SIZE } from '@/utils/pagination'
 import type { PaginationMeta } from '@/types/api'
 
@@ -30,6 +30,15 @@ export async function getUsersApi(params: GetUsersParams = {}): Promise<GetUsers
     return { users: body.data, pagination }
   }
   return { users: [], pagination }
+}
+
+export async function getUserApi(id: string): Promise<UserWithProfile | null> {
+  const { data: body } = await apiClient.get<ApiResponse<UserWithProfile>>(`/api/users/${id}`)
+  return body.succeeded ? body.data : null
+}
+
+export async function deleteUserApi(id: string): Promise<void> {
+  await apiClient.delete(`/api/users/${id}`)
 }
 
 export async function getUserStatisticsApi(): Promise<ProfileStatisticsDto | null> {
