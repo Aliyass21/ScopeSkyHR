@@ -183,6 +183,11 @@ html[dir='ltr'] body {
   background-size: 48px 48px;
 }
 
+/* ── Dashboard: welcome banner — uses theme variables so it adapts to all themes ── */
+.bg-banner-gradient {
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
+}
+
 /* ── Login page: radar/sonar rings ── */
 @keyframes radar-ring {
   0%   { transform: translate(-50%, -50%) scale(0.8); opacity: 0.5; }

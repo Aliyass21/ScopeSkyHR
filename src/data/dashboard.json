@@ -24,7 +24,7 @@
       "employeeName": "Lama Al-Najdi",
       "descriptionAr": "تم تعيين لمى النجدي في قسم التسويق",
       "descriptionEn": "Lama Al-Najdi hired in Marketing department",
-      "timestamp": "2023-05-10T09:00:00Z"
+      "timestamp": "2026-03-10T09:00:00Z"
     },
     {
       "id": "ACT-002",
@@ -33,7 +33,7 @@
       "employeeName": "Tariq Al-Asiri",
       "descriptionAr": "طارق العسيري في إجازة سنوية",
       "descriptionEn": "Tariq Al-Asiri on annual leave",
-      "timestamp": "2026-03-01T08:00:00Z"
+      "timestamp": "2026-03-11T08:00:00Z"
     },
     {
       "id": "ACT-003",
@@ -42,7 +42,7 @@
       "employeeName": "Mohammed Al-Ghamdi",
       "descriptionAr": "محمد الغامدي سجّل حضوره",
       "descriptionEn": "Mohammed Al-Ghamdi clocked in",
-      "timestamp": "2026-03-12T08:03:00Z"
+      "timestamp": "2026-03-15T08:03:00Z"
     },
     {
       "id": "ACT-004",
@@ -60,7 +60,58 @@
       "employeeName": "Badr Al-Harbi",
       "descriptionAr": "تم تعيين بدر الحربي في قسم الهندسة",
       "descriptionEn": "Badr Al-Harbi hired in Engineering department",
-      "timestamp": "2022-09-05T09:00:00Z"
+      "timestamp": "2026-02-05T09:00:00Z"
+    },
+    {
+      "id": "ACT-006",
+      "type": "resignation",
+      "employeeId": "EMP-0009",
+      "employeeName": "Khalid Al-Otaibi",
+      "descriptionAr": "خالد العتيبي قدّم استقالته",
+      "descriptionEn": "Khalid Al-Otaibi submitted resignation",
+      "timestamp": "2026-03-14T11:30:00Z"
+    }
+  ],
+  "departmentDistribution": [
+    { "dept": "engineering", "count": 4, "nameAr": "الهندسة",        "nameEn": "Engineering"     },
+    { "dept": "hr",          "count": 2, "nameAr": "الموارد البشرية","nameEn": "Human Resources" },
+    { "dept": "finance",     "count": 2, "nameAr": "المالية",        "nameEn": "Finance"         },
+    { "dept": "marketing",   "count": 2, "nameAr": "التسويق",        "nameEn": "Marketing"       },
+    { "dept": "operations",  "count": 2, "nameAr": "العمليات",       "nameEn": "Operations"      }
+  ],
+  "attendanceToday": {
+    "present": 9,
+    "onLeave": 1,
+    "absent": 2,
+    "total": 12
+  },
+  "leaveOverview": {
+    "pendingApprovals": 2,
+    "approvedThisMonth": 3,
+    "totalOnLeave": 1
+  },
+  "upcomingEvents": [
+    {
+      "id": "EVT-001",
+      "type": "birthday",
+      "nameAr": "أحمد السعيد",
+      "nameEn": "Ahmed Al-Saeed",
+      "date": "2026-03-18"
+    },
+    {
+      "id": "EVT-002",
+      "type": "anniversary",
+      "nameAr": "سارة القحطاني",
+      "nameEn": "Sara Al-Qahtani",
+      "date": "2026-03-20",
+      "years": 3
+    },
+    {
+      "id": "EVT-003",
+      "type": "birthday",
+      "nameAr": "ريم الزهراني",
+      "nameEn": "Reem Al-Zahrani",
+      "date": "2026-03-25"
     }
   ]
 }

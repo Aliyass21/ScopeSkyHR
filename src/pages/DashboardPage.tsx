@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { UserPlus, Clock, CalendarDays } from 'lucide-react'
+import { UserPlus, Clock, CalendarDays, ArrowRight } from 'lucide-react'
 import { PageWrapper } from '@/components/layout/PageWrapper'
 import { StatsRow } from '@/components/dashboard/StatsRow'
 import { HeadcountChart } from '@/components/dashboard/HeadcountChart'
 import { ActivityFeed } from '@/components/dashboard/ActivityFeed'
+import { WelcomeBanner } from '@/components/dashboard/WelcomeBanner'
+import { DepartmentChart } from '@/components/dashboard/DepartmentChart'
+import { AttendanceRing } from '@/components/dashboard/AttendanceRing'
+import { UpcomingEvents } from '@/components/dashboard/UpcomingEvents'
 import { LoadingSkeleton } from '@/components/shared/LoadingSkeleton'
-import { Button } from '@/components/ui/button'
 import { getDashboardData } from '@/api/dashboard'
 import type { DashboardData } from '@/types/dashboard'
 
@@ -23,14 +26,26 @@ export default function DashboardPage() {
       .finally(() => setLoading(false))
   }, [])
 
+  const attendanceRate =
+    data ? Math.round((data.attendanceToday.present / data.attendanceToday.total) * 100) : 0
+
   return (
     <PageWrapper title={t('dashboard.title')}>
       {loading ? (
         <LoadingSkeleton type="card" />
       ) : data ? (
         <div className="space-y-6">
+          {/* Welcome banner */}
+          <WelcomeBanner
+            attendanceRate={attendanceRate}
+            presentToday={data.stats.presentToday}
+            totalEmployees={data.stats.totalEmployees}
+          />
+
+          {/* KPI stats */}
           <StatsRow stats={data.stats} />
 
+          {/* Headcount trend + Activity feed */}
           <div className="grid gap-6 lg:grid-cols-5">
             <div className="lg:col-span-3">
               <HeadcountChart data={data.headcountTrend} />
@@ -40,23 +55,78 @@ export default function DashboardPage() {
             </div>
           </div>
 
+          {/* Department donut + Attendance ring + Upcoming events */}
+          <div className="grid gap-6 lg:grid-cols-3">
+            <DepartmentChart data={data.departmentDistribution} />
+            <AttendanceRing data={data.attendanceToday} />
+            <UpcomingEvents
+              events={data.upcomingEvents}
+              pendingLeaves={data.leaveOverview.pendingApprovals}
+            />
+          </div>
+
           {/* Quick actions */}
-          <div className="flex flex-wrap gap-3">
-            <Button onClick={() => navigate('/employees')} variant="outline" size="sm">
-              <UserPlus size={16} />
-              {t('dashboard.addEmployee')}
-            </Button>
-            <Button onClick={() => navigate('/attendance')} variant="outline" size="sm">
-              <Clock size={16} />
-              {t('dashboard.viewAttendance')}
-            </Button>
-            <Button onClick={() => navigate('/leave')} variant="outline" size="sm">
-              <CalendarDays size={16} />
-              {t('dashboard.newLeaveRequest')}
-            </Button>
+          <div>
+            <h3 className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+              {t('dashboard.quickActions')}
+            </h3>
+            <div className="grid gap-3 sm:grid-cols-3">
+              <QuickActionCard
+                icon={<UserPlus size={18} />}
+                iconClass="bg-indigo-100 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white"
+                title={t('dashboard.addEmployee')}
+                desc={t('dashboard.addEmployeeDesc')}
+                onClick={() => navigate('/employees')}
+              />
+              <QuickActionCard
+                icon={<Clock size={18} />}
+                iconClass="bg-teal-100 text-teal-600 group-hover:bg-teal-600 group-hover:text-white"
+                title={t('dashboard.viewAttendance')}
+                desc={t('dashboard.viewAttendanceDesc')}
+                onClick={() => navigate('/attendance')}
+              />
+              <QuickActionCard
+                icon={<CalendarDays size={18} />}
+                iconClass="bg-orange-100 text-orange-600 group-hover:bg-orange-600 group-hover:text-white"
+                title={t('dashboard.newLeaveRequest')}
+                desc={t('dashboard.newLeaveRequestDesc')}
+                onClick={() => navigate('/leave')}
+              />
+            </div>
           </div>
         </div>
       ) : null}
     </PageWrapper>
+  )
+}
+
+interface QuickActionCardProps {
+  icon: React.ReactNode
+  iconClass: string
+  title: string
+  desc: string
+  onClick: () => void
+}
+
+function QuickActionCard({ icon, iconClass, title, desc, onClick }: QuickActionCardProps) {
+  return (
+    <button
+      onClick={onClick}
+      className="group flex w-full items-center gap-3 rounded-xl border bg-card p-4 text-start transition hover:border-primary/30 hover:shadow-sm"
+    >
+      <div
+        className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition ${iconClass}`}
+      >
+        {icon}
+      </div>
+      <div className="min-w-0 flex-1">
+        <p className="text-sm font-semibold">{title}</p>
+        <p className="truncate text-xs text-muted-foreground">{desc}</p>
+      </div>
+      <ArrowRight
+        size={15}
+        className="shrink-0 text-muted-foreground transition group-hover:translate-x-0.5 rtl:rotate-180"
+      />
+    </button>
   )
 }
